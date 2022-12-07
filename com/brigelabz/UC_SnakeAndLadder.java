@@ -3,34 +3,51 @@ package com.brigelabz;
 import java.util.Random;
 
 public class UC_SnakeAndLadder {
-    static int initialPosition=0;
-    static final  int ladder=1;
-    static final int snake=2;
-    static final int noPlay=0;
-    static int rollDice(){
-        int dieValue =(int)Math.floor(Math.random()*10)%6+1;
+    static public final int Starting_Position_Of_Player = 0;
+    static public final int Ending_Position_Of_Player = 100;
+    public static final int ladder = 2;
+    public static final int snake = 1;
+    public static final int noPlay = 0;
+
+    public static int rollDie() {
+        int dieValue = (int)(Math.random() * 10) % 6 + 1;
         return dieValue;
     }
 
     public static void main(String[] args) {
-        int rollDice=rollDice();
-        int checkPosition= (int)Math.floor(Math.random()*10)%3;
-        System.out.println(checkPosition);
-        switch (checkPosition){
-            case snake:
-                initialPosition=rollDice-initialPosition;
-                System.out.println("player is on snake" +initialPosition);
-                break;
-            case  ladder:
-                initialPosition=ladder+rollDice;
-                System.out.println("player is on Ladder " +initialPosition);
-                break;
-            default:
-                System.out.println("player is not play " +initialPosition);
-        }
+        int presentPlayerPosition = 0;
 
+        while (presentPlayerPosition < Ending_Position_Of_Player) {
+            int currentPosition = 0;
+            int checkPosition = (int) (Math.random() * 10) % 3;
+           
+            switch (checkPosition) {
+                case snake:
+                    currentPosition =  rollDie();
+                    if ((presentPlayerPosition-currentPosition)>=0 ) {
+                    	presentPlayerPosition -= currentPosition;
+                    	System.out.println("player is on snake " +presentPlayerPosition);
+                    }
+                    break;
+                case ladder:
+                    currentPosition =  rollDie();
+                    if((presentPlayerPosition+currentPosition)<=100 ) {
+                    presentPlayerPosition += currentPosition;
+                    System.out.println("player is on Ladder " +presentPlayerPosition);
+                    }
+                    break;
+                default:
+                    System.out.println("player is not play ");
+            }
+           
+        }
+       
     }
 
-
-
 }
+
+
+
+
+
+
