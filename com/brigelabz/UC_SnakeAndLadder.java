@@ -8,9 +8,11 @@ public class UC_SnakeAndLadder {
 	public static final int ladder = 2;
 	public static final int snake = 1;
 	public static final int noPlay = 0;
+	static int count = 0;
 
 	public static int rollDie() {
 		int dieValue = (int) (Math.random() * 10) % 6 + 1;
+		count++;
 		return dieValue;
 	}
 
@@ -28,6 +30,7 @@ public class UC_SnakeAndLadder {
 				if ((presentPlayerPosition - currentPosition) >= 0) {
 					presentPlayerPosition -= currentPosition;
 					System.out.println("player is on snake " + presentPlayerPosition);
+					
 				}
 				break;
 			case ladder:
@@ -35,7 +38,8 @@ public class UC_SnakeAndLadder {
 				if ((presentPlayerPosition + currentPosition) <= 100) {
 					presentPlayerPosition += currentPosition;
 					System.out.println("player is on Ladder " + presentPlayerPosition);
-				}
+					System.out.println("Number of time rollDie  "+count);
+				} 
 				break;
 			default:
 				System.out.println("player is not play ");
